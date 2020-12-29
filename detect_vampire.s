@@ -1,4 +1,4 @@
-; vasmm68k_mot -Fhunkexe -IFiles:dev/NDK_3.9/Include/include_i -o detect_vampire detect_vampire.s
+; vasmm68k_mot -Fhunkexe -nosym -IFiles:dev/NDK_3.9/Include/include_i -o detect_vampire detect_vampire.s
 
     INCLUDE "exec/execbase.i"
 
