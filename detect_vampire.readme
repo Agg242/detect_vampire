@@ -2,24 +2,27 @@ Short:        Detects Vampire expansion card
 Uploader:     olrick.lefebvre@olrick.fr
 Author:       Olrick Lefebvre
 Type:         util/boot
-Version:      1.0
+Version:      1.1
 Architecture: m68k-amigaos
 Distribution: Aminet
 
-This small util detects a Vampire expansion card based on Exec memory list.
+This small util detects a Vampire expansion card based on Exec AttnFlags.
 
 Context
 =======
+This is just a small tool I wrote as an exercice and because I forgot to
+have a look at VControl which already does the job.
 I wanted to use the same CompactFlash memory card with my A500 and with UAE.
 As I didn't want to manage two different boot disks, I had to detect presence
 of my Vampire Card to adapt configuration files (ScreenMode.prefs ...) at boot.
 
 Technical details
 =================
-My Vampire V2+ board publishes its ram expansion as "VampireFastMem".
-The binary parses Exec memory lists to find that name,
-* if it finds it, it returns 0 as return code,
-* if not, it returns 5 (WARN) as return code.
+After nice suggestions from Holger Hippenstiel and Flype,
+I've dropped detection based on ram expansion "VampireFastMem"
+and now just check the 68080 bit in Exec AttnFlags.
+* if the bit is set, the return code is 0,
+* if not, the return code is 5 (WARN).
 
 You can use it early in startup-sequence, either to put in place dedicated 
 configuration files, or to set a variable used later.
@@ -41,3 +44,5 @@ Annex
 =====
 Project hosted at  https://github.com/Agg242/detect_vampire.git
 Built with vasm
+
+
